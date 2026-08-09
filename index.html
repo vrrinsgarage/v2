@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>VRRINS GARAGE — Area Layanan V2 Test</title>
+<style>
+:root{--bg:#050607;--card:#101216;--line:#272a2f;--text:#f5f5f5;--muted:#9da1a8;--red:#e50914;--green:#18c968;--yellow:#f2c400}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif}
+.wrap{max-width:1050px;margin:auto;padding:22px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:22px}
+.brand{font-weight:900;font-size:22px;letter-spacing:.5px}.brand span{color:var(--red)}
+.badge{border:1px solid var(--line);padding:8px 12px;border-radius:999px;color:#bbb;font-size:12px}
+.card{background:linear-gradient(180deg,#0b0c0f,#08090b);border:1px solid var(--line);border-radius:24px;padding:22px;box-shadow:0 18px 55px #0008}
+.kicker{font-weight:800;letter-spacing:3px;color:#fff;font-size:12px}.title{font-size:clamp(34px,7vw,66px);line-height:.98;margin:12px 0 14px;font-weight:950}.title span{color:var(--red)}
+.sub{color:var(--muted);font-size:18px;line-height:1.5;margin-bottom:20px}
+.map{position:relative;overflow:hidden;border:1px solid #30333a;border-radius:20px;min-height:480px;background:
+radial-gradient(circle at 50% 50%,#222a2b 0 1px,transparent 2px),
+linear-gradient(115deg,transparent 48%,#24272b 49%,transparent 50%),
+linear-gradient(25deg,transparent 48%,#202328 49%,transparent 50%),
+#0b0d10;background-size:30px 30px,140px 140px,170px 170px}
+.map:before{content:"PALEMBANG • AREA LAYANAN";position:absolute;left:18px;top:16px;color:#666;font-size:11px;letter-spacing:2px}
+.ring{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);border-radius:50%;display:flex;align-items:flex-start;justify-content:center;cursor:pointer;transition:.2s}
+.ring:hover{filter:brightness(1.25);transform:translate(-50%,-50%) scale(1.015)}
+.ring span{margin-top:9px;padding:5px 10px;border-radius:999px;background:#08090bd9;font-size:11px;font-weight:800}
+.r3{width:430px;height:430px;border:2px solid #e50914aa;background:#e5091412}.r3 span{color:#ff5252}
+.r2{width:300px;height:300px;border:2px solid #f2c400aa;background:#f2c40012}.r2 span{color:#f7d84b}
+.r1{width:170px;height:170px;border:2px solid #18c968aa;background:#18c96816}.r1 span{color:#43e88a}
+.garage{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:72px;height:72px;border-radius:50%;display:grid;place-items:center;background:#090a0c;border:2px solid #fff;box-shadow:0 0 0 8px #ffffff12,0 10px 30px #000;z-index:5;font-size:28px}
+.garage small{position:absolute;top:78px;white-space:nowrap;font-size:11px;color:#ddd;background:#000b;padding:5px 8px;border-radius:7px}
+.hint{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);background:#050607e8;border:1px solid #333;border-radius:999px;padding:9px 14px;color:#bbb;font-size:12px;white-space:nowrap}
+.zone-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
+.zone-card{background:#111317;border:1px solid var(--line);border-radius:18px;padding:18px;text-align:left;cursor:pointer;color:#fff}
+.zone-card:hover{border-color:#555}.dot{width:12px;height:12px;border-radius:50%;display:inline-block;margin-right:8px}.g{background:var(--green)}.y{background:var(--yellow)}.r{background:var(--red)}
+.zone-card b{font-size:18px}.zone-card p{margin:7px 0 0;color:#9da1a8;font-size:13px}
+.old{margin-top:22px;padding:16px;border:1px dashed #30333a;border-radius:16px;color:#aaa;font-size:13px;line-height:1.5}
+.modal-back{position:fixed;inset:0;background:#000b;backdrop-filter:blur(7px);display:none;align-items:flex-end;justify-content:center;padding:14px;z-index:20}
+.modal-back.show{display:flex}.modal{width:min(620px,100%);background:#0b0d10;border:1px solid #333;border-radius:24px;padding:22px;box-shadow:0 30px 100px #000}
+.close{float:right;width:40px;height:40px;border-radius:50%;border:1px solid #333;background:#111;color:#fff;font-size:22px}
+.modal h2{margin:0 55px 8px 0;font-size:30px}.modal .desc{color:#aaa;line-height:1.5}.result{margin:16px 0;padding:16px;border-radius:16px;background:#111317;border:1px solid #292c31;display:none}.result.show{display:block}.distance{font-size:34px;font-weight:900;margin:5px 0}.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}.btn{border:0;border-radius:14px;padding:14px;font-weight:800;cursor:pointer;background:#1a1d22;color:#fff}.btn.primary{background:var(--red)}.btn.green{background:#0d8f4b}.note{font-size:11px;color:#777;margin-top:14px}
+@media(max-width:700px){.wrap{padding:14px}.card{padding:16px;border-radius:20px}.map{min-height:390px}.r3{width:330px;height:330px}.r2{width:235px;height:235px}.r1{width:135px;height:135px}.zone-grid{grid-template-columns:1fr}.hint{font-size:10px}.actions{grid-template-columns:1fr}.sub{font-size:16px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><div class="brand">VRRINS <span>GARAGE</span> • V2 TEST</div><div class="badge">HYBRID • UJI COBA</div></div>
+  <section class="card">
+    <div class="kicker">WILAYAH OPERASIONAL</div>
+    <div class="title">AREA LAYANAN <span>V2</span></div>
+    <div class="sub">Tekan area lingkaran pada peta untuk melihat detail zona. Ini adalah lingkungan uji terpisah dari daftar perumahan V1.</div>
+
+    <div class="map" id="map">
+      <div class="ring r3" data-zone="3"><span>&gt;15 KM</span></div>
+      <div class="ring r2" data-zone="2"><span>8–15 KM</span></div>
+      <div class="ring r1" data-zone="1"><span>0–8 KM</span></div>
+      <div class="garage">🏠<small>VRRINS GARAGE • TITIK UJI</small></div>
+      <div class="hint">TAP / KLIK LINGKARAN ZONA</div>
+    </div>
+
+    <div class="zone-grid">
+      <button class="zone-card" data-zone="1"><span class="dot g"></span><b>0–8 KM</b><p>Zona utama layanan</p></button>
+      <button class="zone-card" data-zone="2"><span class="dot y"></span><b>8–15 KM</b><p>Konfirmasi lokasi terlebih dahulu</p></button>
+      <button class="zone-card" data-zone="3"><span class="dot r"></span><b>&gt;15 KM</b><p>Hubungi WhatsApp untuk konfirmasi</p></button>
+    </div>
+
+    <div class="old"><b>V1 tetap aman:</b> pada website utama, tombol Zona 1 / Zona 2 / Zona 3 tetap membuka daftar perumahan lama. Halaman ini hanya menguji pintu masuk V2 melalui peta.</div>
+  </section>
+</div>
+
+<div class="modal-back" id="backdrop">
+  <div class="modal">
+    <button class="close" id="close">×</button>
+    <h2 id="modalTitle">Zona</h2>
+    <div class="desc" id="modalDesc"></div>
+    <div class="result" id="result">
+      <div>HASIL CEK LOKASI</div>
+      <div class="distance" id="distance">—</div>
+      <b id="resultZone">—</b>
+      <div id="resultText" style="color:#aaa;margin-top:5px"></div>
+    </div>
+    <div class="actions">
+      <button class="btn green" id="locate">📍 Cek Lokasi Saya</button>
+      <button class="btn" id="maps">🗺️ Buka Google Maps</button>
+      <button class="btn primary" id="wa">💬 WhatsApp</button>
+    </div>
+    <div class="note">Catatan uji: titik pusat memakai koordinat referensi area Bukit Baru, bukan verifikasi koordinat presisi garage. Setelah UI disetujui, titik operasional final kita kunci dari lokasi Google Maps yang tepat.</div>
+  </div>
+</div>
+
+<script>
+const GARAGE={lat:-2.9869,lng:104.7061,label:"VRRINS GARAGE, Bukit Baru, Palembang"};
+const zones={
+  1:{title:"🟢 ZONA 1 • 0–8 KM",desc:"Zona utama layanan VRRINS GARAGE. Pelanggan di dalam radius ini menjadi prioritas layanan utama.",color:"#18c968"},
+  2:{title:"🟡 ZONA 2 • 8–15 KM",desc:"Area layanan lanjutan. Lokasi pelanggan perlu dikonfirmasi terlebih dahulu sebelum pelayanan.",color:"#f2c400"},
+  3:{title:"🔴 ZONA 3 • >15 KM",desc:"Di luar radius utama. Silakan hubungi VRRINS GARAGE untuk konfirmasi ketersediaan layanan.",color:"#e50914"}
+};
+let active=1;
+const backdrop=document.getElementById("backdrop"), title=document.getElementById("modalTitle"), desc=document.getElementById("modalDesc"), result=document.getElementById("result");
+function openZone(z){active=Number(z);title.textContent=zones[active].title;desc.textContent=zones[active].desc;result.classList.remove("show");backdrop.classList.add("show")}
+document.querySelectorAll("[data-zone]").forEach(el=>el.addEventListener("click",()=>openZone(el.dataset.zone)));
+document.getElementById("close").onclick=()=>backdrop.classList.remove("show");
+backdrop.addEventListener("click",e=>{if(e.target===backdrop)backdrop.classList.remove("show")});
+function hav(a,b){const R=6371,dLat=(b.lat-a.lat)*Math.PI/180,dLng=(b.lng-a.lng)*Math.PI/180;const x=Math.sin(dLat/2)**2+Math.cos(a.lat*Math.PI/180)*Math.cos(b.lat*Math.PI/180)*Math.sin(dLng/2)**2;return R*2*Math.atan2(Math.sqrt(x),Math.sqrt(1-x))}
+function zoneFor(km){return km<=8?1:km<=15?2:3}
+document.getElementById("locate").onclick=()=>{
+  if(!navigator.geolocation){alert("Browser ini tidak mendukung GPS.");return}
+  const btn=document.getElementById("locate");btn.textContent="⏳ Mencari lokasi...";
+  navigator.geolocation.getCurrentPosition(pos=>{
+    const user={lat:pos.coords.latitude,lng:pos.coords.longitude},km=hav(GARAGE,user),z=zoneFor(km);
+    document.getElementById("distance").textContent=km.toFixed(1)+" KM";
+    document.getElementById("resultZone").textContent=zones[z].title;
+    document.getElementById("resultZone").style.color=zones[z].color;
+    document.getElementById("resultText").textContent=z===1?"Lokasi berada di zona utama.":z===2?"Lokasi perlu dikonfirmasi.":"Silakan hubungi kami untuk konfirmasi.";
+    result.classList.add("show");btn.textContent="📍 Cek Lokasi Saya";
+  },err=>{btn.textContent="📍 Cek Lokasi Saya";alert("Lokasi belum bisa diambil. Pastikan izin lokasi diberikan dan HTTPS aktif.")},{enableHighAccuracy:true,timeout:12000,maximumAge:0});
+};
+document.getElementById("maps").onclick=()=>{window.open("https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(GARAGE.label)," _blank")};
+document.getElementById("wa").onclick=()=>{window.open("https://wa.me/?text="+encodeURIComponent("Halo VRRINS GARAGE, saya ingin konfirmasi area layanan. Saya melihat informasi Zona "+active+" pada Area Layanan V2."),"_blank")};
+</script>
+</body>
+</html>
