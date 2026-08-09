@@ -1,0 +1,51 @@
+/* VRRINS GARAGE — AREA LAYANAN V2 HYBRID
+   V1 cards remain the old housing-list trigger.
+   V2 map is the new interactive radius/location trigger.
+*/
+.area-v2-hybrid{font-family:inherit;color:#fff;background:#08090a;border:1px solid #24272b;border-radius:18px;padding:28px;max-width:900px;margin:20px auto;box-sizing:border-box}
+.area-v2-hybrid *{box-sizing:border-box}
+.area-v2-hybrid .eyebrow{color:#e10606;font-size:11px;font-weight:900;letter-spacing:.16em;margin:0 0 8px}
+.area-v2-hybrid h1{font-size:clamp(30px,5vw,48px);line-height:1.05;margin:0 0 12px;text-transform:uppercase}
+.area-v2-hybrid h1 .accent{color:#e10606}
+.area-v2-hybrid .intro{color:#9da0a5;font-size:15px;line-height:1.7;margin:0 0 20px}
+.area-v2-map{position:relative;aspect-ratio:16/9;border:1px solid #292d32;border-radius:16px;overflow:hidden;background:#0b0c0d;cursor:pointer;isolation:isolate}
+.area-v2-map img{display:block;width:100%;height:100%;object-fit:cover}
+.area-v2-map__hint{position:absolute;left:50%;top:14px;transform:translateX(-50%);z-index:8;background:#090a0bdf;border:1px solid #5f5f5f;border-radius:999px;padding:8px 14px;font-size:11px;font-weight:900;letter-spacing:.04em;white-space:nowrap;box-shadow:0 8px 30px #0008;pointer-events:none}
+.area-v2-map__overlay{position:absolute;inset:0;z-index:4}
+.area-v2-map__zone{position:absolute;left:50%;top:54%;transform:translate(-50%,-50%);border-radius:50%;background:transparent;border:2px solid;cursor:pointer;transition:transform .18s ease,filter .18s ease,background .18s ease;outline:none}
+.area-v2-map__zone:hover,.area-v2-map__zone:focus-visible{filter:brightness(1.2);transform:translate(-50%,-50%) scale(1.02)}
+.area-v2-map__zone--1{width:40%;height:auto;aspect-ratio:1;border-color:#18c96a;background:#18c96a0d}
+.area-v2-map__zone--2{width:64%;height:auto;aspect-ratio:1;border-color:#e0b900;background:#e0b90008}
+.area-v2-map__zone--3{width:88%;height:auto;aspect-ratio:1;border-color:#e10606;background:#e1060605}
+.area-v2-map__zone span{position:absolute;left:50%;top:8%;transform:translateX(-50%);background:#090a0bdd;border:1px solid currentColor;border-radius:999px;padding:5px 9px;font-size:10px;font-weight:900;white-space:nowrap}
+.area-v2-map__zone--1 span{color:#18c96a}.area-v2-map__zone--2 span{color:#e0b900}.area-v2-map__zone--3 span{color:#e10606}
+.area-v2-map__garage{position:absolute;left:50%;top:54%;transform:translate(-50%,-50%);z-index:7;width:74px;height:74px;border-radius:50%;background:#090a0be8;border:2px solid #e10606;display:flex;align-items:center;justify-content:center;font-size:30px;box-shadow:0 10px 28px #000b;pointer-events:none}
+.area-v2-map__garage small{position:absolute;top:78px;background:#090a0de8;border:1px solid #34373b;border-radius:8px;padding:5px 8px;font-size:8px;white-space:nowrap;color:#fff;font-weight:800}
+.area-v2-hint-row{display:flex;gap:10px;align-items:center;margin:12px 0 18px;color:#9da0a5;font-size:11px}
+.area-v2-hint-row strong{color:#fff}
+.area-v2-old-zones{display:grid;gap:10px}
+.area-v2-old-zone{display:flex;align-items:center;gap:13px;background:#111316;border:1px solid #292d32;border-radius:14px;padding:15px 16px;cursor:pointer;transition:border-color .18s ease,transform .18s ease,background .18s ease;text-align:left;color:#fff;width:100%}
+.area-v2-old-zone:hover,.area-v2-old-zone:focus-visible{border-color:#4b4f55;background:#15171a;transform:translateY(-1px)}
+.area-v2-old-zone .dot{width:12px;height:12px;border-radius:50%;flex:none}.dot--green{background:#18c96a}.dot--yellow{background:#e0b900}.dot--red{background:#e10606}
+.area-v2-old-zone .copy{display:grid;gap:3px;flex:1}.area-v2-old-zone b{font-size:15px}.area-v2-old-zone small{color:#9da0a5;font-size:11px}.area-v2-old-zone .count{color:#fff;font-size:11px;font-weight:900;white-space:nowrap}.area-v2-old-zone .arrow{font-size:20px;color:#888}
+.area-v2-modal{position:fixed;inset:0;z-index:3000;display:none;padding:22px;background:#000b;backdrop-filter:blur(9px)}
+.area-v2-modal.is-open{display:flex;align-items:center;justify-content:center}
+.area-v2-modal__dialog{position:relative;width:min(720px,100%);max-height:min(90vh,850px);overflow:auto;background:#08090a;border:1px solid #30343a;border-radius:20px;box-shadow:0 30px 100px #000b;padding:28px}
+.area-v2-modal__close{position:absolute;right:16px;top:14px;width:40px;height:40px;border-radius:50%;border:1px solid #383c42;background:#101214;color:#fff;font-size:25px;cursor:pointer;z-index:3}
+.area-v2-modal__eyebrow{color:#e10606;font-size:10px;font-weight:900;letter-spacing:.15em}
+.area-v2-modal h2{margin:5px 55px 5px 0;font-size:clamp(25px,5vw,38px);text-transform:uppercase;line-height:1.05}
+.area-v2-modal p{color:#9da0a5;line-height:1.6;font-size:13px}
+.area-v2-modal__badge{display:inline-flex;align-items:center;gap:8px;border:1px solid #30343a;background:#111316;border-radius:999px;padding:7px 10px;font-size:11px;font-weight:900;margin:7px 0 16px}
+.area-v2-modal__badge i{width:9px;height:9px;border-radius:50%;display:block}
+.area-v2-modal__visual{position:relative;aspect-ratio:16/9;border-radius:14px;overflow:hidden;border:1px solid #292d32;background:radial-gradient(circle at 50% 54%,#16251d 0 12%,#102116 12.5% 23%,#18170c 23.5% 37%,#16100f 37.5% 50%,#090a0b 50.5%);margin:12px 0 18px}
+.area-v2-modal__visual:before,.area-v2-modal__visual:after{content:"";position:absolute;left:50%;top:54%;transform:translate(-50%,-50%);border-radius:50%;pointer-events:none}.area-v2-modal__visual:before{width:42%;aspect-ratio:1;border:2px solid #18c96a99;box-shadow:0 0 50px #18c96a14}.area-v2-modal__visual:after{width:66%;aspect-ratio:1;border:2px solid #e0b90099;box-shadow:0 0 80px #e0b90010}
+.area-v2-modal__ring{position:absolute;left:50%;top:54%;transform:translate(-50%,-50%);width:90%;aspect-ratio:1;border:2px solid #e1060690;border-radius:50%}
+.area-v2-modal__garage{position:absolute;left:50%;top:54%;transform:translate(-50%,-50%);font-size:31px;z-index:2}
+.area-v2-modal__ring-label{position:absolute;top:8%;left:50%;transform:translateX(-50%);background:#08090ae8;border-radius:999px;padding:5px 9px;font-size:9px;font-weight:900;color:#e10606;border:1px solid #e10606}
+.area-v2-modal__actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.area-v2-modal__button{min-height:48px;border-radius:12px;border:1px solid #34383e;background:#111316;color:#fff;font-weight:900;font-size:12px;cursor:pointer;text-decoration:none;display:flex;align-items:center;justify-content:center;text-align:center;padding:8px 12px}
+.area-v2-modal__button--primary{background:#e10606;border-color:#e10606}.area-v2-modal__button--green{background:#18c96a;border-color:#18c96a;color:#06150c}
+.area-v2-modal__result{margin-top:14px;padding:15px;border-radius:13px;background:#111316;border:1px solid #292d32;display:grid;gap:5px}
+.area-v2-modal__result strong{font-size:18px}.area-v2-modal__result span{color:#9da0a5;font-size:11px;line-height:1.55}
+.area-v2-modal__fallback{margin-top:10px;color:#777;font-size:10px}
+@media(max-width:700px){.area-v2-hybrid{padding:18px;border-radius:15px}.area-v2-map__hint{font-size:9px;top:9px}.area-v2-map__garage{width:56px;height:56px;font-size:23px}.area-v2-map__garage small{top:58px;font-size:7px}.area-v2-modal{padding:0}.area-v2-modal.is-open{align-items:stretch}.area-v2-modal__dialog{width:100%;height:100%;max-height:none;border-radius:0;border:0;padding:22px 14px 30px}.area-v2-modal__actions{grid-template-columns:1fr}.area-v2-modal__zone-list{display:grid;grid-template-columns:1fr 1fr;gap:8px}.area-v2-modal__zone-chip{font-size:9px!important}}
