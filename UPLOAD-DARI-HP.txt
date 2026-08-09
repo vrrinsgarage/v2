@@ -1,0 +1,23 @@
+VRRINS GARAGE — V3 FINAL
+
+Untuk upload ke GitHub:
+1. Ekstrak ZIP ini.
+2. Buka folder VRRINS-V3-FINAL.
+3. Upload ISI folder tersebut ke repository GitHub.
+4. Jangan rename file.
+5. Pastikan folder .github/workflows ikut ter-upload.
+
+Struktur:
+index.html
+style.css
+app.js
+worker.js
+README.md
+.nojekyll
+.github/workflows/pages.yml
+
+Jangan campurkan file V2 lama seperti services.js, zona.js, popup-area-v2.js, dll.
+
+Catatan:
+worker.js masih memerlukan konfigurasi backend/Cloudflare Worker untuk GPS produksi.
+Koordinat operasional tidak diletakkan di app.js.

@@ -1,36 +1,25 @@
-# VRRINS GARAGE — GPS ZONA V3
+# VRRINS GARAGE — GPS Zona V3
 
-Konsep uji coba:
-- Tombol **CEK LOKASI SAYA** meminta GPS pelanggan.
-- Pelanggan hanya menerima **jarak + zona + kisaran biaya**.
-- Titik operasional VRRINS GARAGE **tidak ditampilkan** pada UI.
-- Zona 1: 0–8 KM.
-- Zona 2: 8–15 KM — Rp70.000–Rp120.000.
-- Zona 3: >15 KM — Rp120.000–Rp250.000.
-- Tombol **BOOKING & CEK HARGA** disiapkan untuk alur booking berikutnya.
+## GitHub Pages
+Upload semua isi folder ini. Settings → Pages → Source: **GitHub Actions**.
 
-## PENTING — keamanan koordinat
+## Cloudflare Worker
+Deploy `worker.js`. Buat Worker Variables/Secrets:
+- `GARAGE_LAT` = lintang koordinat operasional asli
+- `GARAGE_LNG` = bujur koordinat operasional asli
 
-Jangan menaruh koordinat VRRINS GARAGE di `app.js` pada versi publik. Jika koordinat dimasukkan ke JavaScript yang dikirim ke browser, pelanggan yang membuka Developer Tools dapat menemukannya.
+Jangan memasukkan kedua nilai tersebut ke GitHub/app.js.
 
-Karena itu `app.js` hanya mengirim koordinat GPS pelanggan ke backend. `worker.js` melakukan perhitungan jarak menggunakan `GARAGE_LAT` dan `GARAGE_LNG` yang disimpan sebagai Environment Variables di server/Cloudflare Worker.
+Tes URL Worker dengan browser: harus muncul JSON `ok: true`.
 
-### Titik referensi yang digunakan untuk rancangan
+## Hubungkan frontend
+Setelah Worker online, edit `app.js`:
+`const API_ENDPOINT = "https://NAMA-WORKER.workers.dev";`
+Commit. Tombol CEK LOKASI SAYA kemudian meminta GPS pelanggan dan mengirim hanya koordinat pelanggan ke Worker. Worker menghitung jarak dan mengembalikan jarak + zona + kisaran biaya.
 
-Pengguna sebelumnya memberikan Plus Code:
-`2MQJ+466, Bukit Baru, Kec. Ilir Bar. I, Kota Palembang, Sumatera Selatan 30153`
+## Zona
+- 0–8 KM = Zona 1
+- >8–15 KM = Zona 2, Rp70.000–Rp120.000
+- >15 KM = Zona 3, Rp120.000–Rp250.000
 
-Plus Code tersebut adalah **short code**, sehingga secara teknis perlu konteks lokasi untuk memulihkannya menjadi full code. Untuk versi produksi, koordinat yang benar-benar Anda konfirmasi sebagai titik operasional harus dimasukkan ke Environment Variables backend. Jangan menaruhnya di halaman publik.
-
-### Uji coba
-
-1. Upload `index.html`, `style.css`, dan `app.js` ke repository uji.
-2. Deploy `worker.js` sebagai backend (Cloudflare Worker atau serverless endpoint).
-3. Set Environment Variables:
-   - `GARAGE_LAT`
-   - `GARAGE_LNG`
-4. Masukkan URL Worker ke `API_ENDPOINT` di `app.js`.
-5. Buka website melalui HTTPS.
-6. Tekan **CEK LOKASI SAYA** dan izinkan lokasi.
-
-Catatan: GitHub Pages saja tidak cukup untuk menyembunyikan koordinat referensi. Backend diperlukan jika larangan melihat koordinat harus benar-benar ditegakkan.
+Catatan: koordinat operasional tidak ditampilkan di UI. Namun API publik yang menerima koordinat dan mengembalikan jarak tetap merupakan distance oracle; untuk produksi sebaiknya ditambah rate limiting/anti-abuse.
